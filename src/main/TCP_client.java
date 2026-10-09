@@ -23,4 +23,9 @@ public class GreetClient {
         out.close();
         clientSocket.close();
     }
+    public static void main(String[] args) throws IOException{
+        GreetClient client = new GreetClient();
+        client.startConnection("127.0.0.1", 6666);
+        client.sendMessage("hello server");
+    }
 }
