@@ -5,6 +5,7 @@ target/
 
 ### IntelliJ IDEA ###
 .idea/modules.xml
+.idea/vcs.xml
 .idea/jarRepositories.xml
 .idea/compiler.xml
 .idea/libraries/
@@ -40,4 +41,4 @@ build/
 
 
 ### Java ###
-/src/main/UDP.java
+#/src/main/UDP.java

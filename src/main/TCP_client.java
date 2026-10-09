@@ -27,5 +27,6 @@ public class GreetClient {
         GreetClient client = new GreetClient();
         client.startConnection("127.0.0.1", 6666);
         client.sendMessage("hello server");
+        client.stopConnection();
     }
 }
