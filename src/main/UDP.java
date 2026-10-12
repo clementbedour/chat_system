@@ -16,7 +16,18 @@ public class UDP {
             String received = new String(inPacket.getData(), 0, inPacket.getLength());
             System.out.println("« Salutations, je suis Buzz l'Éclair, je viens en paix ! " + received);
 
-        }
-        socket.close();
+
+            //si connection alors envoi msg au client pour confirmation connection
+            String name = "serveur_connection_ok";
+            byte[] byteArrray = name.getBytes();
+
+            InetSocketAddress sourceAddr =(InetSocketAddress)inPacket.getSocketAddress();
+            InetAddress sourceAddr2 = sourceAddr.getAddress();
+
+            DatagramPacket outPacket = new DatagramPacket(byteArrray, byteArrray.length,sourceAddr2, 1788);
+            socket.send(outPacket);
+            break;}
+
     }
+        //socket.close();
 }
