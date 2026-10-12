@@ -1,0 +1,60 @@
+title Connection Chat Systeme
+
+actor User1
+entity Serveur1
+
+entity Serveur2
+actor User2
+
+participant User1
+participant Serveur1
+
+activate User1
+activate Serveur1
+
+loop #red;2 Connection soit effectué
+  User1 -> Serveur1 : Connection_User(User1)
+  Serveur1 -> Serveur1 : Connection_Serveur(broadcast,User1)
+
+  alt #green;2 Premier Connecté
+    Serveur1 -> User1 : Reseau_Init()
+  else Pas Premier Connecté
+    activate User2
+    activate Serveur2
+    Serveur2 -> Serveur2 : Verif_Pseudo(User1)
+    Serveur2 -> Serveur1 : Envoie_profil(Boolean,User2)
+    note over User1,User2 : E1 : Si User3 précédemment connecté mais déco donc User2 doit dire non
+    Serveur1->Serveur1 : Enregistre(User2)
+    Serveur1->Serveur1 : Verif_Pseudo(Boolean)
+
+    alt #green;2 Boolean == True
+      Serveur1 -> Serveur2 : Connection_Reussit(User1)
+      Serveur2->Serveur2 : Enregistre(User1)
+      Serveur2 -> User2 : New_Connection(User1)
+      Serveur1 -> User1 : Connection_Reussit(User1)
+    else Boolean == False
+      Serveur1->User1 : Echec_Pseudo()
+    end
+  end
+end
+
+
+
+deactivate User1
+deactivate Serveur1
+
+deactivate User2
+deactivate Serveur2
+
+#ref over User,DAB: A2 : montant demandé supérieur au solde
+#note over Auth,DAB: E3 : retrait non autorisé
+#User-->DAB: envoie_mdp()
+#opt #blue;2  Selection produit
+#https://sequencediagram.org/
+
+
+
+#loop #red;2 Ajout argent constant
+#opt #blue;2  Selection produit
+#end
+#end
