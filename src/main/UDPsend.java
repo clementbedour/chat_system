@@ -24,7 +24,12 @@ public class UDPsend {
 
 
         String received = new String(inPacket.getData(), 0, inPacket.getLength());
-        System.out.println("serveur_connection_ok " + received);
+        System.out.println(received);
+
+        InetSocketAddress sourceAddr =(InetSocketAddress)inPacket.getSocketAddress();
+        InetAddress sourceAddr2 = sourceAddr.getAddress();
+        System.out.println(sourceAddr2);
+
 
         /*String received = null;
         try {
