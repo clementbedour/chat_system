@@ -27,7 +27,7 @@ public class UDP {
                 socket.send(outPacket);
 
             }
-        }
+        } 
         finally {
             socket.close();
         }
