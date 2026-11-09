@@ -4,50 +4,46 @@ import java.net.*;
 public class UDPsend {
 
     public static void main(String[] args) throws IOException {
+        if (args.length == 0) {
+            System.out.println("Veuillez fournir un nom en argument.");
+            return;
+        }
+
         DatagramSocket socket = new DatagramSocket();
         byte[] buf = new byte[256];
 
         String name = args[0];
         byte[] byteArrray = name.getBytes();
 
-
-
-
+        //broadcast pour prise de contact
         InetAddress senderAddress = InetAddress.getByName("255.255.255.255");
         DatagramPacket outPacket = new DatagramPacket(byteArrray, byteArrray.length, senderAddress, 1789);
         socket.send(outPacket);
 
-        //verif si connection au serveur OK
+        //prep reception
         DatagramSocket socket_in = new DatagramSocket(1788);
-        DatagramPacket inPacket  = new DatagramPacket(buf, buf.length);
-        socket_in.receive(inPacket);
 
+        //timeout de 3 secondes pour si aucune réponse (serveur new ou down)
+        socket_in.setSoTimeout(3000);
 
-        String received = new String(inPacket.getData(), 0, inPacket.getLength());
-        System.out.println(received);
+        DatagramPacket inPacket = new DatagramPacket(buf, buf.length);
 
-        InetSocketAddress sourceAddr =(InetSocketAddress)inPacket.getSocketAddress();
-        InetAddress sourceAddr2 = sourceAddr.getAddress();
-        System.out.println(sourceAddr2);
-
-
-        /*String received = null;
         try {
-            received = new String(inPacket.getData(), 0, inPacket.getLength());
-        } catch (java.lang.Exception e) {
-            throw new RuntimeException(e);
-        }
+            socket_in.receive(inPacket); //bloquant pour timeout / reception
 
-        //Thread.sleep(100);
-        if ("serveur_connection_ok".equals(received)){
-            System.out.println("Connection au serveur réussi");
-        }
-        else {
-            System.out.println("Connection au serveur échoué...");
-            System.out.println("Veuillez réessayer plus tard");
-        }*/
+            String received = new String(inPacket.getData(), 0, inPacket.getLength());
+            System.out.println(received);
 
-        socket.close();
-        socket_in.close();
+            InetSocketAddress sourceAddr = (InetSocketAddress) inPacket.getSocketAddress();
+            InetAddress sourceAddr2 = sourceAddr.getAddress();
+            System.out.println("Connecté avec : " + sourceAddr2);
+
+        } catch (SocketTimeoutException e) {
+            //aucune réponse
+            System.out.println("Vous êtes actuellement la seule personne connectée sur le réseau.");
+        } finally {
+            socket.close();
+            socket_in.close();
+        }
     }
 }

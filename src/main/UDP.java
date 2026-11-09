@@ -8,26 +8,28 @@ public class UDP {
         boolean running = true;
         byte[] buf = new byte[256];
 
-        while (running) {
-            DatagramPacket inPacket  = new DatagramPacket(buf, buf.length);
-            socket.receive(inPacket);
+        System.out.println("En attente de connexions...");
+        try{
+            while (running) {
+                DatagramPacket inPacket  = new DatagramPacket(buf, buf.length);
+                socket.receive(inPacket);
+                String received = new String(inPacket.getData(), 0, inPacket.getLength());
+                System.out.println("« Salutations, je suis Buzz l'Éclair, je viens en paix ! " + received);
 
+                //si connection alors envoi msg au client pour confirmation connection
+                String name = "serveur_connection_ok";
+                byte[] byteArrray = name.getBytes();
 
-            String received = new String(inPacket.getData(), 0, inPacket.getLength());
-            System.out.println("« Salutations, je suis Buzz l'Éclair, je viens en paix ! " + received);
+                InetSocketAddress sourceAddr =(InetSocketAddress)inPacket.getSocketAddress();
+                InetAddress sourceAddr2 = sourceAddr.getAddress();
 
+                DatagramPacket outPacket = new DatagramPacket(byteArrray, byteArrray.length,sourceAddr2, 1788);
+                socket.send(outPacket);
 
-            //si connection alors envoi msg au client pour confirmation connection
-            String name = "serveur_connection_ok";
-            byte[] byteArrray = name.getBytes();
-
-            InetSocketAddress sourceAddr =(InetSocketAddress)inPacket.getSocketAddress();
-            InetAddress sourceAddr2 = sourceAddr.getAddress();
-
-            DatagramPacket outPacket = new DatagramPacket(byteArrray, byteArrray.length,sourceAddr2, 1788);
-            socket.send(outPacket);
-            break;}
-
+            }
+        }
+        finally {
+            socket.close();
+        }
     }
-        //socket.close();
 }
