@@ -29,7 +29,7 @@ public class Pseudo {
             System.out.println("Créé : " + p1.pseudo);
 
             // Création du 2ème ami
-            Pseudo p2 = new Pseudo("Bob");
+            Pseudo p2 = new Pseudo("Bob"); 
             System.out.println("Créé : " + p2.pseudo);
 
             // Tentative de créer un doublon
