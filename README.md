@@ -22,7 +22,6 @@ maintenir une liste des utilisateurs connectés
 avoir un main qui fait un focntionnement classique
 (fonctionne aussi en ligne de commande)
 !!!! FAIRE DES TESTS (pas sur)
-
 ajouter commentaires (README) sur comment marche le code et le faire fonctionner (faut que ça marche sur maven)
 
 README :
