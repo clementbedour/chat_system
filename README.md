@@ -1,39 +1,64 @@
+<!--
 V1 :<br>
 test unitaire (mvn test)<br>
 contact list<br>
 gestion pseudo<br>
 client qui broadcast son pseudo<br>
-ajouter target dans gitignore (pour l'enlever mvn clear ou clean)
-<br>
-<br>
-pom.xml<br>
-readme<br>
-repertoire src		-> main ->test<br>
-.gitignore<br>
-github 				-><br>
-<br>
-Singleton<br>
-<--
-à faire :
-mettre sous forme de packages le code 
-rajouter un ID pour quand découverte envoie ID + pseudo
-communiquer le pseudonyme choisi aux autres utilisateurs
-maintenir une liste des utilisateurs connectés
-avoir un main qui fait un focntionnement classique
-(fonctionne aussi en ligne de commande)
-!!!! FAIRE DES TESTS (pas sur)
-ajouter commentaires (README) sur comment marche le code et le faire fonctionner (faut que ça marche sur maven)
 
-README :
-Quelques lignes décrivant la nature et les objectifs du projet
-Instructions sur la façon de compiler et d'exécuter le programme à partir du code source
+Les tâches pour la V1 :<br>
+FAIT    mettre sous forme de packages le code <br>
+A FAIRE rajouter un ID pour quand découverte envoie ID + pseudo<br>
+FAIT    communiquer le pseudonyme choisi aux autres utilisateurs<br>
+A FAIRE maintenir une liste des utilisateurs connectés<br>
+FAIT    avoir un main qui fait un focntionnement classique<br>
+FAIT    (fonctionne aussi en ligne de commande)<br>
+
+!!!! FAIRE DES TESTS<br>
+A FAIRE ajouter commentaires (README) sur comment marche le code <br>
+FAIT    le faire fonctionner (faut que ça marche sur maven)<br>
+
+README :<br>
+A FAIRE Quelques lignes décrivant la nature et les objectifs du projet<br>
+A FAIRE Instructions sur la façon de compiler et d'exécuter le programme à partir du code source<br>
 
 VERIFIER GIT:
-Aucun artefact de compilation dans le dépôt (par exemple, fichiers .class).
-Aucun fichier de configuration (.idea, .project) dans le dépôt.
-Le .gitignore le fichier est complet (par exemple, il empêche l'ajout des fichiers mentionnés ci-dessus).
-Les commits sont de taille raisonnable avec des messages significatifs.
+A FAIRE Aucun artefact de compilation dans le dépôt (par exemple, fichiers .class).<br>
+A FAIRE Aucun fichier de configuration (.idea, .project) dans le dépôt.<br>
+FAIT    Le .gitignore le fichier est complet (par exemple, il empêche l'ajout des fichiers mentionnés ci-dessus).<br>
+A FAIRE Les commits sont de taille raisonnable avec des messages significatifs.<br>
 
 CODE PROPRE :
-es erreurs sont traitées correctement: La décision (1) d'ignorer une erreur, (2) de simplement l'afficher, ou (3) d'arrêter le traitement et de retourner l'erreur est justifiée.
-Votre gestion de thread est correcte: pas d'impasse, protection contre l'accès simultané.-->
+Les erreurs sont traitées correctement: 
+    La décision d'ignorer une erreur
+    de simplement l'afficher
+    d'arrêter le traitement et de retourner l'erreur est justifiée.
+
+FAIT    Votre gestion de thread est correcte: pas d'impasse, protection contre l'accès simultané.
+
+-->
+Commande à executer
+
+<!--
+FAUDRA VOIR COMMENT LEURS DIRE DE CLONE
+Pour copier le repertoire il faudra copier le repertoire, soit avec <br>
+`git clone https://github.com/insa-4ir-chatsystem/SC-ChatSytem-Bedour-Wang`<br>
+
+soit avec ça si vous n'avez pas accés au précédent, mais c pareil<br>
+`git clone https://github.com/clementbedour/chat_system`<br>
+
+
+-->
+Pour lancer les tests, vous devais être à la racine du projet, puis executer la commande :<br>
+<!--
+Sur IdeaProjects faut faire `cd ~/IdeaProjects/chat_system`
+-->
+`mvn test`
+
+Pour pouvoir executer le projet dans le fonctionnement classque, il faudra :<br><br>
+Être à la racine du projet<br><br>
+Aller dans le repertoire adéquat avec<br> `cd chat_system/src/main/java`<br><br>
+
+Avoir compiler l'ensemble des fichiers présents grace à la commande<br><br>
+`javac chatsystem/network/*.java chatsystem/contacts/*.java chatsystem/controller/*.java chatsystem/ui/*.java chatsystem/*.java `<br><br>
+
+Pour finir, lancer le programme avec votre nom en argument, ici ça sera Alice :<br><br> `java chatsystem.Main Alice`<br><br>
