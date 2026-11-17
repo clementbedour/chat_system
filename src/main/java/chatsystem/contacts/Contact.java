@@ -1,6 +1,6 @@
 package chatsystem.contacts;
-
-public class Contact {
+/** Java fait tout le travail*/
+public record Contact (String pseudo) {
 
 }
 
