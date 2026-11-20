@@ -6,6 +6,9 @@ import chatsystem.network.UDPMessage;
 import chatsystem.network.UDPSender;
 
 import java.net.InetAddress;
+import java.net.NetworkInterface;
+import java.net.SocketException;
+import java.util.Enumeration;
 
 /** Fait le lien entre Network et Contact*/
 public class Controller {
@@ -18,6 +21,12 @@ public class Controller {
         ContactList pseudos = ContactList.getInstance();
         String received = message.content();
         InetAddress senderAddr = message.origin();
+
+
+        //return car loopback
+        if (isLocalAddress(senderAddr)) {
+            return;
+        }
 
         //reponse d'un user déjà co
         if (received.startsWith("serveur_connection_ok:")) {
@@ -39,7 +48,7 @@ public class Controller {
                 System.out.println("Créé : " + received);
 
                 if (!myPseudo.isEmpty()) {
-                    String name = "serveur_connection_ok" + myPseudo;
+                    String name = "serveur_connection_ok:" + myPseudo;
                     UDPSender.send(senderAddr, 1789, name);
                 }
             } catch (ContactAlreadyExists e) {
@@ -78,5 +87,18 @@ public class Controller {
         //valide le name
         myPseudo = name;
         contacts.addUser(myPseudo);
+    }
+
+
+    private static boolean isLocalAddress(InetAddress addr) {
+        if (addr.isAnyLocalAddress() || addr.isLoopbackAddress()) {
+            return true;
+        }
+        try {
+            //verif si IP == myIP
+            return NetworkInterface.getByInetAddress(addr) != null;
+        } catch (SocketException e) {
+            return false;
+        }
     }
 }
