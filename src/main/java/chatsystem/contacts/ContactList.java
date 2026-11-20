@@ -5,6 +5,7 @@ public class ContactList {
 
     public interface Observer {
         void newContactAdded(Contact contact);
+        default void contactRemoved(String pseudo) {}
     }
 
     //SINGLETON
@@ -24,6 +25,15 @@ public class ContactList {
 
     public synchronized void addObserver (Observer obs) {
         this.observers.add(obs);
+    }
+
+    //supp user pour deco
+    public synchronized void removeUser(String pseudo) {
+        if (pseudos.remove(pseudo)) {
+            for (Observer obs : this.observers) {
+                obs.contactRemoved(pseudo);
+            }
+        }
     }
 
 
