@@ -21,6 +21,7 @@ public class View  implements ContactList.Observer {
 
     @Override
     public void newContactAdded(Contact contact) {
+        System.out.println("-----------------------------------------------------------------");
         System.out.println("[VUE] New User : " + contact.pseudo());
         displayContactList();
     }

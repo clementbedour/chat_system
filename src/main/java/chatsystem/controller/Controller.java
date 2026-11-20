@@ -152,6 +152,7 @@ public class Controller {
                     for (String pseudo : contacts.getAllPseudos()) {
                         if (!pseudo.equals(myPseudo) && !activeUsers.contains(pseudo)) {
                             contacts.removeUser(pseudo);
+                            System.out.println("-----------------------------------------------------------------");
                             System.out.println("Déconnecté car pas de réponse : " + pseudo);
                             listChanged = true;
                         }
