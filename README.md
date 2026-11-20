@@ -38,8 +38,7 @@ FAIT    Votre gestion de thread est correcte: pas d'impasse, protection contre l
 -->
 Commande à executer
 
-<!--
-FAUDRA VOIR COMMENT LEURS DIRE DE CLONE
+
 Pour copier le repertoire il faudra copier le repertoire, soit avec <br>
 `git clone https://github.com/insa-4ir-chatsystem/SC-ChatSytem-Bedour-Wang`<br>
 
@@ -47,18 +46,16 @@ soit avec ça si vous n'avez pas accés au précédent, mais c pareil<br>
 `git clone https://github.com/clementbedour/chat_system`<br>
 
 
--->
 Pour lancer les tests, vous devais être à la racine du projet, puis executer la commande :<br>
-<!--
-Sur IdeaProjects faut faire `cd ~/IdeaProjects/chat_system`
--->
+
+Pour effectuer les tests, et vérifier que vous êtes au bon endroit, vous pouvais faire :
 `mvn test`
 
-Pour pouvoir executer le projet dans le fonctionnement classque, il faudra :<br><br>
+Pour pouvoir executer le projet dans le fonctionnement classique, il faudra :<br><br>
 Être à la racine du projet<br><br>
-Aller dans le repertoire adéquat avec<br> `cd chat_system/src/main/java`<br><br>
+Compiler avec Maven <br> `mvn compile`<br><br>
 
-Avoir compiler l'ensemble des fichiers présents grace à la commande<br><br>
+<!--Avoir compiler l'ensemble des fichiers présents grace à la commande<br><br>
 `javac chatsystem/network/*.java chatsystem/contacts/*.java chatsystem/controller/*.java chatsystem/ui/*.java chatsystem/*.java `<br><br>
-
-Pour finir, lancer le programme avec votre nom en argument, ici ça sera Alice :<br><br> `java chatsystem.Main Alice`<br><br>
+-->
+Pour finir, lancer le programme avec votre nom en argument, ici ça sera Dupont :<br><br> `java -cp target/classes chatsystem.Main Dupont`<br><br>
