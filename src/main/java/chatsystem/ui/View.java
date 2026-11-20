@@ -11,18 +11,17 @@ public class View  implements ContactList.Observer {
     }
 
     //affiche la liste de contact
-    void displayContactList() {
+    public static void displayContactList() {
         System.out.println("\n LSITE DES UTILISATEURS :");
         for (String p : ContactList.getInstance().getAllPseudos()) {
             System.out.println(" - " + p);
         }
         System.out.println("\n");
-}
-
-@Override
-public void newContactAdded(Contact contact) {
-    System.out.println("[VUE] New User : " + contact.pseudo());
-    displayContactList();
     }
 
+    @Override
+    public void newContactAdded(Contact contact) {
+        System.out.println("[VUE] New User : " + contact.pseudo());
+        displayContactList();
+    }
 }
